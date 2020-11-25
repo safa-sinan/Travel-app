@@ -17,14 +17,31 @@
  * Define Global Variables
  * 
 */
-
+let navbarMenu; /* array of navigation list*/
 
 /**
  * End Global Variables
  * Start Helper Functions
  * 
 */
+function setNavbarMenu(){
+    //get all sections in the document
+    const sections = document.body.getElementsByTagName('section');
 
+    //intialize navbar
+    navbarMenu = [];
+
+    //set navbarMenu new values
+    for (const item of sections) {
+        navbarMenu.push(item.getAttribute('data-nav'));
+    }
+}
+function resetNavbar(){
+    const navbar = document.getElementById('navbar__list');
+    while (navbar.firstChild) {
+        element.removeChild(enavbar.firstChild);
+    }
+}
 
 
 /**
@@ -34,7 +51,22 @@
 */
 
 // build the nav
+function createNavbar()
+{
+    setNavbarMenu();
+   // resetNavbar();
 
+    //modify nav element contents
+    const navbar = document.getElementById('navbar__list');
+    for (const item of navbarMenu) {
+        const newElement = document.createElement('li');
+        newElement.textContent = item;
+
+        navbar.appendChild(newElement);
+    }
+
+
+}
 
 // Add class 'active' to section when near top of viewport
 
@@ -45,7 +77,7 @@
 /**
  * End Main Functions
  * Begin Events
- * 
+ *
 */
 
 // Build menu 
