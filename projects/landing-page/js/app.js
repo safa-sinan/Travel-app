@@ -24,7 +24,10 @@ let navbarMenu; /* array of navigation list*/
  * Start Helper Functions
  * 
 */
-function setNavbarMenu(){
+/*
+* @description populates array which is  used to create navigation links 
+*/
+function setNavbarMenu() {
     //get all sections in the document
     const sections = document.body.getElementsByTagName('section');
 
@@ -33,10 +36,17 @@ function setNavbarMenu(){
 
     //set navbarMenu new values
     for (const item of sections) {
-        navbarMenu.push(item.getAttribute('data-nav'));
+        navbarMenu.push({
+            id: item.id,
+            nav: item.getAttribute('data-nav')
+        });
     }
 }
-function resetNavbar(){
+/*
+* @description removes old navigation links in the navigation menu
+* when sections are updated
+*/
+function resetNavbar() {
     const navbar = document.getElementById('navbar__list');
     while (navbar.firstChild) {
         element.removeChild(enavbar.firstChild);
@@ -49,41 +59,51 @@ function resetNavbar(){
  * Begin Main Functions
  * 
 */
-
-// build the nav
-function createNavbar()
-{
+/*
+* @description called when window is ready. builds the nav menu
+*/
+function createNavbar() {
     setNavbarMenu();
-   // resetNavbar();
+    resetNavbar();
 
-    //modify nav element contents
+    // Build menu 
     const navbar = document.getElementById('navbar__list');
-    for (const item of navbarMenu) {
+    for (const index in navbarMenu) {
+
         const newElement = document.createElement('li');
-        newElement.textContent = item;
+        newElement.innerHTML = `<a href="#${navbarMenu[index].id}" class="menu__link">${navbarMenu[index].nav}</a>`;
 
         navbar.appendChild(newElement);
     }
-
-
+ 
+    // Scroll to anchor ID using scrollTO event
+    navbar.addEventListener('click', respondToTheClick);
 }
-
-// Add class 'active' to section when near top of viewport
-
-
-// Scroll to anchor ID using scrollTO event
-
-
 /**
  * End Main Functions
  * Begin Events
  *
 */
-
-// Build menu 
-
 // Scroll to section on link click
+/*
+* @description called when link is clicked. adds active class to selected section
+* modify the scroll behaviour to be smooth
+*/
+function respondToTheClick(evt) {
+    if (evt.target.nodeName === 'A') {
+        evt.preventDefault();
 
-// Set sections as active
+        //remove previous active state
+        const prevSelect = document.body.querySelector('.your-active-class');
+        prevSelect.className = 
+        prevSelect.className.replace('your-active-class', '');
 
+        //add active state to new selection
+        // Set sections as active
+        const currSelect = document.body.querySelector(`${evt.target.hash}`);
+        currSelect.className+='your-active-class';
+        // new scroll behaviour when link is clicked
+        currSelect.scrollIntoView({ behavior: 'smooth', block: 'end'});
 
+    }
+}
