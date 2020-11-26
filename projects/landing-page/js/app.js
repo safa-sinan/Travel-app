@@ -42,18 +42,6 @@ function setNavbarMenu() {
         });
     }
 }
-/*
-* @description removes old navigation links in the navigation menu
-* when sections are updated
-*/
-function resetNavbar() {
-    const navbar = document.getElementById('navbar__list');
-    while (navbar.firstChild) {
-        element.removeChild(enavbar.firstChild);
-    }
-}
-
-
 /**
  * End Helper Functions
  * Begin Main Functions
@@ -64,7 +52,6 @@ function resetNavbar() {
 */
 function createNavbar() {
     setNavbarMenu();
-    resetNavbar();
 
     // Build menu 
     const navbar = document.getElementById('navbar__list');
@@ -75,7 +62,7 @@ function createNavbar() {
 
         navbar.appendChild(newElement);
     }
- 
+
     // Scroll to anchor ID using scrollTO event
     navbar.addEventListener('click', respondToTheClick);
 }
@@ -95,15 +82,15 @@ function respondToTheClick(evt) {
 
         //remove previous active state
         const prevSelect = document.body.querySelector('.your-active-class');
-        prevSelect.className = 
-        prevSelect.className.replace('your-active-class', '');
+        prevSelect.className =
+            prevSelect.className.replace('your-active-class', '');
 
         //add active state to new selection
         // Set sections as active
         const currSelect = document.body.querySelector(`${evt.target.hash}`);
-        currSelect.className+='your-active-class';
+        currSelect.className += 'your-active-class';
         // new scroll behaviour when link is clicked
-        currSelect.scrollIntoView({ behavior: 'smooth', block: 'end'});
+        currSelect.scrollIntoView({ behavior: 'smooth', block: 'end' });
 
     }
 }
