@@ -13,12 +13,8 @@
   <!-- Load Javascript-->
   <script src="js/app.js"></script>
   <script>
-    window.addEventListener('DOMContentLoaded', function () {
-      createNavbar();
-    });
-    window.addEventListener('scroll', function(e) {
-      onscroll();
-});
+    window.addEventListener('DOMContentLoaded', createNavbar());
+    window.addEventListener('scroll', onscroll(e));
   </script>
 </head>
 
