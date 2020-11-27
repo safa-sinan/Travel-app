@@ -55,15 +55,17 @@ function createNavbar() {
 
     // Build menu 
     const navbar = document.getElementById('navbar__list');
+    const fragment = document.createDocumentFragment(); 
     for (const index in navbarMenu) {
 
         const newElement = document.createElement('li');
         newElement.innerHTML = `<a href="#${navbarMenu[index].id}" class="menu__link">${navbarMenu[index].nav}</a>`;
 
-        navbar.appendChild(newElement);
+        fragment.appendChild(newElement);
     }
 
     // Scroll to anchor ID using scrollTO event
+    navbar.appendChild(fragment);
     navbar.addEventListener('click', respondToTheClick);
 }
 /**
@@ -93,4 +95,9 @@ function respondToTheClick(evt) {
         currSelect.scrollIntoView({ behavior: 'smooth', block: 'end' });
 
     }
+}
+/*
+* @description change active class 
+*/
+function onScroll(evt) {
 }
