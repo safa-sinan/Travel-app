@@ -81,17 +81,8 @@ function createNavbar() {
 function respondToTheClick(evt) {
     if (evt.target.nodeName === 'A') {
         evt.preventDefault();
-
-        //remove previous active state
-        const prevSelect = document.body.querySelector('.your-active-class');
-        prevSelect.className =
-            prevSelect.className.replace('your-active-class', '');
-
-        //add active state to new selection
-        // Set sections as active
-        const currSelect = document.body.querySelector(`${evt.target.hash}`);
-        currSelect.className += 'your-active-class';
         // new scroll behaviour when link is clicked
+        const currSelect = document.body.querySelector(`${evt.target.hash}`);
         currSelect.scrollIntoView({ behavior: 'smooth', block: 'end' });
 
     }
@@ -99,5 +90,24 @@ function respondToTheClick(evt) {
 /*
 * @description change active class 
 */
-function onScroll(evt) {
+function onScroll() {
+    //get all sections in the document
+    const sections = document.querySelectorAll("section");
+
+    //remove previous active state
+    const prevSelect = document.body.querySelector('.your-active-class');
+    prevSelect.className =
+    prevSelect.className.replace('your-active-class', '');
+
+    for(let sec of sections){
+
+        if (sec.getBoundingClientRect().top  >= 0){
+
+            setTimeout(function () {
+                sec.className += 'your-active-class';
+            },0);
+            break;
+        }
+    }
+    
 }
