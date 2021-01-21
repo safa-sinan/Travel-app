@@ -2,11 +2,22 @@ var path = require('path')
 const express = require('express')
 const mockAPIResponse = require('./mockAPI.js')
 const dotenv = require('dotenv');
+const fetch = require('node-fetch');
 
 dotenv.config();
 const app = express()
 
 app.use(express.static('dist'))
+
+const cors = require('cors');
+const bodyParser = require('body-parser');
+//Here we are configuring express to use body-parser as middle-ware.
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+// Cors for cross origin allowance
+app.use(cors());
+
 
 console.log(__dirname)
 
@@ -26,15 +37,10 @@ app.get('/test', function (req, res) {
 
 app.post('/submit', function (req, res) {
     //fetch api call url 
-    const url = req.body.formText;
-    res = await fetch(process.env.API_ID + 'key=' + process.env.API_KEY + '&lang=en' + '&url=' + url)
-    try {
-
-        const data = await res.json();
-        console.log(data)
-        return data;
-    } catch (error) {
-        console.log("error", error);
-        // appropriately handle the error
-    }
+    const url = req.body.url;
+    res = fetch(process.env.API_ID + 'key=' + process.env.API_KEY + '&lang=en' + '&url=' + url);
+    console.log(res);
+    const data = res.json();
+    console.log(data);
+    res.send(data);
 })
