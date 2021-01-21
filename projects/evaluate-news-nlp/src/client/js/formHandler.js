@@ -7,7 +7,12 @@ function handleSubmit(event) {
 
 
     console.log("::: Form Submitted :::")
-    fetch('http://localhost:8081/test')
+    fetch('http://localhost:8081/submit', {
+        method: 'post',
+        body:    JSON.stringify(body),
+        headers: { 'Content-Type': 'application/json' },
+    })
+    
     .then(res => res.json())
     .then(function(res) {
         document.getElementById('results').innerHTML = res.message
