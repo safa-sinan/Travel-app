@@ -8,10 +8,13 @@ function handleSubmit(event) {
 
     console.log("::: Form Submitted :::")
     fetch('http://localhost:8081/submit', {
-        method: 'post',
-        body:    JSON.stringify(body),
-        headers: { 'Content-Type': 'application/json' },
-    })
+        method: 'POST',
+        credentials: 'same-origin',
+        headers: {
+        'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({formText: formText})
+    },)
     
     .then(res => res.json())
     .then(function(res) {
