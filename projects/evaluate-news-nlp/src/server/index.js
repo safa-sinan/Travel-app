@@ -24,6 +24,17 @@ app.get('/test', function (req, res) {
     res.send(mockAPIResponse)
 })
 
-app.post('/submit', function(req, res){
-//fetch api call url 
+app.post('/submit', function (req, res) {
+    //fetch api call url 
+    const url = req.body.formText;
+    res = await fetch(process.env.API_ID + 'key=' + process.env.API_KEY + '&lang=en' + '&url=' + url)
+    try {
+
+        const data = await res.json();
+        console.log(data)
+        return data;
+    } catch (error) {
+        console.log("error", error);
+        // appropriately handle the error
+    }
 })

@@ -11,6 +11,10 @@ function checkForName(inputText) {
     if(names.includes(inputText)) {
         alert("Welcome, Captain!")
     }
+    if (inputText == '')
+    {
+       // return false;
+    }
 }
 
 export { checkForName }
