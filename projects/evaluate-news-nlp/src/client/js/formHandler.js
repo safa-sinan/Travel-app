@@ -3,16 +3,25 @@ function handleSubmit(event) {
 
     // check what text was put into the form field
     let formText = document.getElementById('name').value;
-    Client.checkForName(formText);
+    if (Client.validateUrl(formText) == true){
 
-    console.log("::: Form Submitted :::");
+    console.log('::: Form Submitted :::');
     postData('http://localhost:8081/submit', { url: formText })
-        .then(res => res.json())
+        //.then(res => res.json())
         .then(function (res) {
-            document.getElementById('results').innerHTML = res.message
+            document.getElementById('results').innerHTML = 
+            `model: ${res.model},
+            \nscore tag: ${res.score_tag},
+            \nagreement: ${res.agreement},
+            \nsubjectivity: ${res.subjectivity},
+            \nconfidence: ${res.confidence},
+            \nirony: ${res.irony}`;
         })
-}
-const postData = async (url = '', data = {}) => {
+    }else{
+        alert('Invalid URL');
+    }
+};
+async function postData (url = '', data = {}){
     const response = await fetch(url, {
         method: 'POST',
         credentials: 'same-origin',

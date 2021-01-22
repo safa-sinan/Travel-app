@@ -35,12 +35,10 @@ app.get('/test', function (req, res) {
     res.send(mockAPIResponse)
 })
 
-app.post('/submit', function (req, res) {
+app.post('/submit', async function (req, res) {
     //fetch api call url 
     const url = req.body.url;
-    res = fetch(process.env.API_ID + 'key=' + process.env.API_KEY + '&lang=en' + '&url=' + url);
-    console.log(res);
-    const data = res.json();
-    console.log(data);
+    const apiCall = await fetch(process.env.API_ID + 'key=' + process.env.API_KEY + '&lang=en' + '&url=' + url);
+    const data = await apiCall.json();
     res.send(data);
 })
