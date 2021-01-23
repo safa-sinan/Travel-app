@@ -1,11 +1,24 @@
-# Weather-Journal App Project
+# Front End Nanodegree Program
 
-## Overview
-This project requires you to create an asynchronous web app that uses Web API and user data to dynamically update the UI. 
-This app gets user entered zip code and displays data on app
+Front End Nanodegree Content & Project Resources
 
-## Instructions
-This will require modifying the `server.js` file and the `website/app.js` file. You can see `index.html` for element references, and once you are finished with the project steps, you can use `style.css` to style your application to customized perfection.
+## Table of Contents
 
-## Extras
-If you are interested in testing your code as you go, you can use `tests.js` as a template for writing and running some basic tests for your code.
+* [Project address & url](#project)
+* [Description](#Descriptionnpm install --save-dev jest)
+* [Style-Guide](#style-guide)
+
+## Project
+
+The following is the current projects 
+[Evaluate A News Article with Natural Language Processing](https://github.com/udacity/fend/tree/refresh-2019/projects/evaluate-news-nlp)
+
+## Description 
+
+this application allows users to enter url of a website then calls the meaningcloud sentimental analytics api to analyse the text then prints it on the same page
+
+## Style-Guide
+
+See below for the Udacity Style Guide used thoroughout the Front End Nanodegree.
+
+* [Nanodegree Style Guide](http://udacity.github.io/frontend-nanodegree-styleguide/)
