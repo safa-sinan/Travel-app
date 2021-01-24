@@ -1,3 +1,9 @@
+var path = require('path');
+const express = require('express');
+const mockAPIResponse = require('./mockAPI.js');
+const dotenv = require('dotenv');
+const fetch = require('node-fetch');
+
 // Setup empty JS object to act as endpoint for all routes
 projectData = {};
 const port = 8000;
@@ -16,8 +22,19 @@ app.use(bodyParser.json());
 // Cors for cross origin allowance
 app.use(cors());
 // Initialize the main project folder
-app.use(express.static('website'));
+//app.use(express.static('website'));
 
+dotenv.config();
+app.use(express.static('dist'))
+
+// Cors for cross origin allowance
+//app.use(cors());
+
+console.log(__dirname)
+
+app.get('/', function (req, res) {
+    res.sendFile('dist/index.html');
+})
 
 // Setup Server
 const server = app.listen(port, listening);
