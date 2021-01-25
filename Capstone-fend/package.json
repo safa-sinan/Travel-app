@@ -11,7 +11,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
+  "description": "Front End Nanodegree Content & Project Resources",
   "dependencies": {
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
