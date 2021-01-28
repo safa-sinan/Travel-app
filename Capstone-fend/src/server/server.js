@@ -1,9 +1,11 @@
 var path = require('path');
 const dotenv = require('dotenv');
 const fetch = require('node-fetch');
-
+const geoNames = 'http://api.geonames.org/postalCodeSearchJSON?';
+const weatherBit = 'http://api.weatherbit.io/v2.0/forecast/daily?';
+const pixabay = '';
 // Setup empty JS object to act as endpoint for all routes
-projectData = {};
+let projectData = {};
 const port = 8000;
 
 // Require Express to run server and routes
@@ -46,13 +48,54 @@ app.get('/getData', (req, res) => {
     console.log(projectData);
 });
 
-app.post('/addData', (req, res) => {
+//geoname api call
+app.post('/addLocation', async (req, res) => {
     const body = req.body;
-    
+    const response = await fetch( process.env.GEONAME + 'placename=' + body.city + '&country=' + body.country + '&maxRows=1&username='+ process.env.USER );
+    try {
+        const data = await response.json();
+        projectData = {
+            lng : data.postalCodes[0].lng,
+            lat : data.postalCodes[0].lat,
+            country: data.postalCodes[0].countryCode
+        }
+        res.send(data);
+    } catch (error) {
+        console.log("error", error);
+        // appropriately handle the error
+    }
+    console.log('addLocation end');
+});
+
+//pixabay api call
+app.post('/addPic', async (req, res) => {
+    const body = req.body;
+   /* 
     projectData = {
         temperature : body.temperature,
         date : body.date,
         userResponse: body.userResponse
+    }*/
+    console.log('addPic');
+});
+
+app.post('/addWeather', async (req, res) => {
+    const body = req.body;
+    const index = req.body.index; //departure date
+
+    const response = await fetch( process.env.WEATHER + '&lat='+ body.lat +'&lon='+ body.lng + '&key='+ process.env.WB_KEY );
+    
+    try {
+        const data = await response.json();
+        projectData = { ...projectData,
+            low : data.data[index].low_temp,
+            high : data.data[index].high_temp,
+            des: data.data[index].weather.description
+        }
+        //res.send(projectData);
+    } catch (error) {
+        console.log("error", error);
+        // appropriately handle the error
     }
-    console.log(projectData);
+    console.log('addWeather end');
 });

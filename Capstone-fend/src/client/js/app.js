@@ -1,26 +1,29 @@
 /* Global Variables */
-const apiKey = 'a71dc3603fd9454a31db2a619c3eff4c&units=imperial&lang=en';
-const baseUrl = 'https://api.openweathermap.org/data/2.5/weather?';
+let ddateIndex = 1; //count/index for departure date 
 // Create a new date instance dynamically with JS
-let d = new Date();
-let newDate = d.getMonth() + 1 + '.' + d.getDate() + '.' + d.getFullYear();
+//let d = new Date();
+//let newDate = d.getMonth() + 1 + '.' + d.getDate() + '.' + d.getFullYear();
 
 document.getElementById('generate').addEventListener('click', performAction);
 function performAction(e) {
-    const zipCode = document.getElementById('zip').value;
-    getWeatherData(baseUrl, zipCode, apiKey)
-    .then(
-        function (Data) {
-            console.log(Data)
-            const feelings = document.getElementById('feelings').value;
-            postData('/addData', { temperature: Data.main.temp, date: newDate, userResponse: feelings })
-            .then(
-                updateUI()
-            )
-        })
-    }
-
-    
+    const city = document.getElementById('city').value;
+    const country = document.getElementById('country').value;;
+    postData('/addLocation', { city: city, country: country })
+        // getWeatherData(baseUrl, zipCode, apiKey)
+        .then(
+            function (Data) {
+                console.log(Data);
+                //const date = document.getElementById('ddate').value;
+                postData('/addWeather', { lng: Data.lng, lat: Data.lat , index: ddateIndex})
+                  /*  .then(
+                        function (Data) {
+                            postData('/addPic', { lng: Data.lng, lat: Data.lat })
+                        })*/
+                   // .then(
+                      //  updateUI()
+                    //)
+            })
+}
 
 const getWeatherData = async (baseURL, zip, key) => {
 
@@ -58,13 +61,15 @@ const postData = async (url = '', data = {}) => {
 
 const updateUI = async () => {
     const request = await fetch('/getData');
-    try{
-      const allData = await request.json();
-      document.getElementById('date').innerHTML = allData.date;
-      document.getElementById('temp').innerHTML = allData.temperature;
-      document.getElementById('content').innerHTML = allData.userResponse;
-  
-    }catch(error){
-      console.log("error", error);
+    try {
+        const allData = await request.json();
+        console.log(allData);
+        document.getElementById('date').innerHTML = allData.lng;
+        document.getElementById('temp').innerHTML = allData.lat;
+        //country code
+        document.getElementById('content').innerHTML = allData.country;
+
+    } catch (error) {
+        console.log("error", error);
     }
-  }
+}
