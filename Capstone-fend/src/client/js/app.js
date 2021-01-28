@@ -7,12 +7,13 @@ let ddateIndex = 1; //count/index for departure date
 document.getElementById('generate').addEventListener('click', performAction);
 function performAction(e) {
     const city = document.getElementById('city').value;
-    const country = document.getElementById('country').value;;
+    const country = document.getElementById('country').value;
+    console.log('Add location');
     postData('/addLocation', { city: city, country: country })
         // getWeatherData(baseUrl, zipCode, apiKey)
         .then(
             function (Data) {
-                console.log(Data);
+                console.log('add weather');
                 //const date = document.getElementById('ddate').value;
                 postData('/addWeather', { lng: Data.lng, lat: Data.lat , index: ddateIndex})
                   /*  .then(

@@ -51,7 +51,8 @@ app.get('/getData', (req, res) => {
 //geoname api call
 app.post('/addLocation', async (req, res) => {
     const body = req.body;
-    const response = await fetch( process.env.GEONAME + 'placename=' + body.city + '&country=' + body.country + '&maxRows=1&username='+ process.env.USER );
+    
+    const response = await fetch( process.env.GEONAME + 'placename=' + body.city + '&country=' + body.country + '&maxRows=1&username=' + process.env.GN_USER);
     try {
         const data = await response.json();
         projectData = {
@@ -84,9 +85,9 @@ app.post('/addWeather', async (req, res) => {
     const index = req.body.index; //departure date
 
     const response = await fetch( process.env.WEATHER + '&lat='+ body.lat +'&lon='+ body.lng + '&key='+ process.env.WB_KEY );
-    
     try {
         const data = await response.json();
+        console.log("data", data);
         projectData = { ...projectData,
             low : data.data[index].low_temp,
             high : data.data[index].high_temp,
