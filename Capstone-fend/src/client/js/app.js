@@ -68,6 +68,7 @@ const updateUI = async () => {
         console.log("data", allData);
         //add image for city
         Client.updateImage(allData.url);
+        //update most recent entry (count days, and weather info)
         //document.getElementById('date').innerHTML = allData.lng;
         //document.getElementById('temp').innerHTML = allData.lat;
         //country code
