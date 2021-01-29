@@ -60,7 +60,7 @@ app.post('/addLocation', async (req, res) => {
             lat : data.postalCodes[0].lat,
             country: data.postalCodes[0].countryCode
         }
-        res.send(data);
+        res.send(projectData);
     } catch (error) {
         console.log("error", error);
         // appropriately handle the error
@@ -83,16 +83,17 @@ app.post('/addPic', async (req, res) => {
 app.post('/addWeather', async (req, res) => {
     const body = req.body;
     const index = req.body.index; //departure date
-
+    
     const response = await fetch( process.env.WEATHER + '&lat='+ body.lat +'&lon='+ body.lng + '&key='+ process.env.WB_KEY );
     try {
         const data = await response.json();
-        console.log("data", data);
+        //console.log("data", data);
         projectData = { ...projectData,
             low : data.data[index].low_temp,
             high : data.data[index].high_temp,
             des: data.data[index].weather.description
         }
+        console.log("project", projectData);
         //res.send(projectData);
     } catch (error) {
         console.log("error", error);
