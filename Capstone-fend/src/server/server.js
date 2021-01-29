@@ -3,7 +3,7 @@ const dotenv = require('dotenv');
 const fetch = require('node-fetch');
 const geoNames = 'http://api.geonames.org/postalCodeSearchJSON?';
 const weatherBit = 'http://api.weatherbit.io/v2.0/forecast/daily?';
-const pixabay = '';
+const pixabay = 'https://pixabay.com/api/?';
 // Setup empty JS object to act as endpoint for all routes
 let projectData = {};
 const port = 8000;
@@ -27,9 +27,6 @@ app.use(cors());
 dotenv.config();
 app.use(express.static('dist'))
 
-// Cors for cross origin allowance
-//app.use(cors());
-
 console.log(__dirname)
 
 app.get('/', function (req, res) {
@@ -44,8 +41,8 @@ function listening() {
 };
 
 app.get('/getData', (req, res) => {
+    console.log("getdata", projectData);
     res.send(projectData);
-    console.log(projectData);
 });
 
 //geoname api call
@@ -70,14 +67,21 @@ app.post('/addLocation', async (req, res) => {
 
 //pixabay api call
 app.post('/addPic', async (req, res) => {
-    const body = req.body;
-   /* 
-    projectData = {
-        temperature : body.temperature,
-        date : body.date,
-        userResponse: body.userResponse
-    }*/
-    console.log('addPic');
+    const response = await fetch( process.env.PIXABAY + '&key='+ process.env.P_KEY +'&q='+ req.body.city +'&image_type=photo');
+    
+    try {
+        const data = await response.json();
+    
+        projectData = { ...projectData,
+            url : data.hits[0].webformatURL
+        }
+        res.send(projectData);
+    } catch (error) {
+        console.log("error", error);
+        // appropriately handle the error
+    }
+    console.log("projectData", projectData);
+    console.log('addPic end');
 });
 
 app.post('/addWeather', async (req, res) => {
@@ -93,8 +97,7 @@ app.post('/addWeather', async (req, res) => {
             high : data.data[index].high_temp,
             des: data.data[index].weather.description
         }
-        console.log("project", projectData);
-        //res.send(projectData);
+        res.send(projectData);
     } catch (error) {
         console.log("error", error);
         // appropriately handle the error

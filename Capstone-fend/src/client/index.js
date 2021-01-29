@@ -1,5 +1,5 @@
 import { performAction} from './js/app'
-//import { handleSubmit } from './js/formHandler'
+import { updateImage } from './js/img'
 import './styles/style.scss'
 //import './styles/base.scss'
 //import './styles/footer.scss'
@@ -8,5 +8,6 @@ import './styles/style.scss'
 console.log("Alert!!");
 
 export {
-    performAction
+    performAction,
+    updateImage
    }

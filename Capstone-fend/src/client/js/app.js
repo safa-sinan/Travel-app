@@ -1,3 +1,4 @@
+
 /* Global Variables */
 let ddateIndex = 1; //count/index for departure date 
 // Create a new date instance dynamically with JS
@@ -9,21 +10,21 @@ function performAction(e) {
     const city = document.getElementById('city').value;
     const country = document.getElementById('country').value;
     console.log('Add location');
-    postData('/addLocation', { city: city, country: country })
-        // getWeatherData(baseUrl, zipCode, apiKey)
+    postData('http://localhost:8000/addLocation', { city: city, country: country })
         .then(
             function (Data) {
-                console.log('add weather');
                 //const date = document.getElementById('ddate').value;
-                postData('/addWeather', { lng: Data.lng, lat: Data.lat , index: ddateIndex})
-                  /*  .then(
-                        function (Data) {
-                            postData('/addPic', { lng: Data.lng, lat: Data.lat })
-                        })*/
-                   // .then(
-                      //  updateUI()
-                    //)
+                console.log('Add weather');
+                postData('http://localhost:8000/addWeather', { lng: Data.lng, lat: Data.lat, index: ddateIndex })
             })
+        .then(function (Data) {
+            console.log('Add pic');
+            postData('http://localhost:8000/addPic', { city: city })
+        })
+        .then(function (Data) {
+            console.log('update UI');
+            updateUI()
+        })
 }
 
 const getWeatherData = async (baseURL, zip, key) => {
@@ -61,14 +62,16 @@ const postData = async (url = '', data = {}) => {
 }
 
 const updateUI = async () => {
-    const request = await fetch('/getData');
+    const request = await fetch('http://localhost:8000/getData');
     try {
         const allData = await request.json();
-        console.log(allData);
-        document.getElementById('date').innerHTML = allData.lng;
-        document.getElementById('temp').innerHTML = allData.lat;
+        console.log("data", allData);
+        //add image for city
+        Client.updateImage(allData.url);
+        //document.getElementById('date').innerHTML = allData.lng;
+        //document.getElementById('temp').innerHTML = allData.lat;
         //country code
-        document.getElementById('content').innerHTML = allData.country;
+        //document.getElementById('content').innerHTML = allData.country;
 
     } catch (error) {
         console.log("error", error);
