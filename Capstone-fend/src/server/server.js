@@ -50,9 +50,9 @@ app.post('/addLocation', async (req, res) => {
     const body = req.body;
     
     const response = await fetch( process.env.GEONAME + 'placename=' + body.city + '&country=' + body.country + '&maxRows=10&username=' + process.env.GN_USER);
-    try { //
+    try { 
         const data = await response.json();
-        console.log("data", data);
+        //console.log("data", data);
         projectData = {
             lng : data.postalCodes[0].lng,
             lat : data.postalCodes[0].lat,
@@ -69,7 +69,6 @@ app.post('/addLocation', async (req, res) => {
 //pixabay api call
 app.post('/addPic', async (req, res) => {
     const response = await fetch( process.env.PIXABAY + '&key='+ process.env.P_KEY +'&q='+ req.body.city +'&image_type=photo');
-    
     try {
         const data = await response.json();
     
@@ -98,6 +97,7 @@ app.post('/addWeather', async (req, res) => {
             high : data.data[index].high_temp,
             des: data.data[index].weather.description
         }
+        //console.log("projectData", projectData);
         res.send(projectData);
     } catch (error) {
         console.log("error", error);

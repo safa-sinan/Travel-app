@@ -1,36 +1,36 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="UTF-8">
-<title>Travel App</title>
-<link href="https://fonts.googleapis.com/css?family=Oswald:400,600,700|Ranga:400,700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <title>Travel App</title>
+  <link href="https://fonts.googleapis.com/css?family=Oswald:400,600,700|Ranga:400,700&display=swap" rel="stylesheet">
 </head>
- <body>
-<div id = "app">
-  <div class ="holder headline">
-    Weather Journal App
-  </div>
-  <div class ="holder zip">
-    <label for="city">City</label>
-    <input type="text" id="city" placeholder="enter cityhere">
-    <label for="country">Country</label>
-    <input type="text" id="country" placeholder="enter country here">
-    <label for="ddate">Departure Date</label>
-    <input type="text" id="ddate" placeholder="enter departure date here">
-  </div>
-  <div id="output" class ="holder feel">
-    <label for="feelings">How are you feeling today?</label>
-    <textarea class= "myInput" id="feelings" placeholder="Enter your feelings here" rows="9" cols="50"></textarea>
-    <button id="generate" type = "submit"> Generate </button>
-  </div>
-  <div class ="holder entry">
-    <div class = "title">Most Recent Entry</div>
-   <div id = "entryHolder">
-    <div id = "date"></div> 
-    <div id = "temp"></div>
-    <div id = "content"></div>
-  </div>
-  </div>
+
+<body>
+  <div id="app">
+    <div class="holder headline">
+      Travel Planner
+    </div>
+    <div class="holder zip">
+        <label for="city">My trip to</label>
+        <input type="text" id="city" placeholder="enter city" required>
+        <label for="country">Country</label>
+        <input type="text" id="country" placeholder="enter country" required>
+        <label for="ddate">Departing</label>
+        <input type="date" id="ddate" placeholder="YYYY-MM-DD" required>
+        <input id="Add" type="submit" onsubmit="return Client.performAction(event)" onclick="return Client.performAction(event)"> 
+    </div>
+    <div class="holder entry">
+      <div class="title">Most Recent Entry</div>
+      <div id="entryHolder">
+        <div id="count"></div>
+        <div id="forcast"></div>
+        <div id="high"></div>
+        <div id="des"></div>
+      </div>
+    </div>
   </div>
 </body>
+
 </html>

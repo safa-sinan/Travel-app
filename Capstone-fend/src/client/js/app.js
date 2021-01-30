@@ -1,11 +1,7 @@
 
 /* Global Variables */
-let ddateIndex = 1; //count/index for departure date 
-// Create a new date instance dynamically with JS
-//let d = new Date();
-//let newDate = d.getMonth() + 1 + '.' + d.getDate() + '.' + d.getFullYear();
+let ddateIndex = 0; //count/index for departure date 
 
-document.getElementById('generate').addEventListener('click', performAction);
 function performAction(e) {
     const city = document.getElementById('city').value;
     const country = document.getElementById('country').value;
@@ -13,7 +9,8 @@ function performAction(e) {
     postData('http://localhost:8000/addLocation', { city: city, country: country })
         .then(
             function (Data) {
-                //const date = document.getElementById('ddate').value;
+                ddateIndex = Client.calcCountDown(); //forcaset date index 
+                console.log(ddateIndex);
                 console.log('Add weather');
                 postData('http://localhost:8000/addWeather', { lng: Data.lng, lat: Data.lat, index: ddateIndex })
             })
@@ -69,12 +66,18 @@ const updateUI = async () => {
         //add image for city
         Client.updateImage(allData.url);
         //update most recent entry (count days, and weather info)
-        //document.getElementById('date').innerHTML = allData.lng;
-        //document.getElementById('temp').innerHTML = allData.lat;
+        document.getElementById('count').innerHTML = `${allData.city}, ${allData.country} is ${ddateIndex} days away`;
+        document.getElementById('forcast').innerHTML = `Typical weather for then is:`
+        document.getElementById("high").innerHTML = `High: ${allData.high}, Low: ${allData.low}`;
+        document.getElementById("des").innerHTML = `${allData.des}`;
+       
         //country code
         //document.getElementById('content').innerHTML = allData.country;
 
     } catch (error) {
         console.log("error", error);
     }
+}
+export{
+    performAction
 }
