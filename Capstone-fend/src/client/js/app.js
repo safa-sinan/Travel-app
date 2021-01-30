@@ -72,7 +72,6 @@ const updateUI = async () => {
         document.getElementById("des").innerHTML = `${allData.des}`;
        
         //country code
-        //document.getElementById('content').innerHTML = allData.country;
 
     } catch (error) {
         console.log("error", error);

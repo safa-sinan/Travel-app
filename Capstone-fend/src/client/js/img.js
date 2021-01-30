@@ -16,9 +16,9 @@ const calcCountDown = () => {
 const today = new Date();
 const depDate = new Date(document.getElementById('ddate').value);
 
-return Math.round((depDate-today)/(1000*60*60*24)) - 1;
-
+return Math.round((depDate-today)/(1000*60*60*24));
 }
+
 export {
     updateImage,
     calcCountDown

@@ -19,7 +19,11 @@
         <input type="text" id="country" placeholder="enter country" required>
         <label for="ddate">Departing</label>
         <input type="date" id="ddate" placeholder="YYYY-MM-DD" required>
-        <input id="Add" type="submit" onsubmit="return Client.performAction(event)" onclick="return Client.performAction(event)"> 
+        <label for="rdate">Returning</label>
+        <input type="date" id="rdate" placeholder="YYYY-MM-DD" required>
+        <button id="Add" type="submit" onsubmit="return Client.performAction(event)" onclick="return Client.performAction(event)">save trip</button>
+        <button id="remove" type="submit">emove trip</button> 
+  
     </div>
     <div class="holder entry">
       <div class="title">Most Recent Entry</div>
