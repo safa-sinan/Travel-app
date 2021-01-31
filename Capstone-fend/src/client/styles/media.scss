@@ -14,8 +14,8 @@
         display: grid;
         grid-template-rows: 10% auto;
         grid-template-areas:
-            "hd hd hd "
-            "ph main main"
+            "hd hd"
+            "ph main"
     }
 }
 
@@ -24,8 +24,8 @@
         display: grid;
         grid-template-rows: 10% auto;
         grid-template-areas:
-            "hd hd hd hd"
-            "ph ph main main ";
+            "hd hd"
+            "ph main";
     }
 }
 header {
@@ -33,11 +33,11 @@ header {
     grid-area: hd;
 }
 .img {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+    //display: flex;
+    //flex-direction: column;
+   // align-items: flex-start;
     grid-area: ph;
-    padding: 0.2rem;
+    //padding: 0.2rem;
 }
 .content {
     grid-area: main;
