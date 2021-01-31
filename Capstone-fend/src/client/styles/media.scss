@@ -1,0 +1,45 @@
+@media(max-width: 320px) {
+    .page {
+        display: grid;
+        grid-template-rows: 10% 40% 50%;
+        grid-template-areas:
+            "hd"
+            "ph"
+            "main";
+    }
+}
+
+@media(min-width: 600px) and (max-width: 900px) {
+    .page {
+        display: grid;
+        grid-template-rows: 10% auto;
+        grid-template-areas:
+            "hd hd hd "
+            "ph main main"
+    }
+}
+
+@media(min-width: 901px) {
+    .page {
+        display: grid;
+        grid-template-rows: 10% auto;
+        grid-template-areas:
+            "hd hd hd hd"
+            "ph ph main main ";
+    }
+}
+header {
+    text-align: left;
+    grid-area: hd;
+}
+.img {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    grid-area: ph;
+    padding: 0.2rem;
+}
+.content {
+    grid-area: main;
+    padding: 1rem;
+}

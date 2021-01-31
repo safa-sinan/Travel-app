@@ -9,18 +9,19 @@ function performAction(e) {
     postData('http://localhost:8000/addLocation', { city: city, country: country })
         .then(
             function (Data) {
-                ddateIndex = Client.calcCountDown(); //forcaset date index 
-                console.log(ddateIndex);
                 console.log('Add weather');
+                ddateIndex = Client.calcCountDown(); //forcaset date index 
                 postData('http://localhost:8000/addWeather', { lng: Data.lng, lat: Data.lat, index: ddateIndex })
-            })
-        .then(function (Data) {
+      //      })
+      //  .then(function (Data) {
             console.log('Add pic');
             postData('http://localhost:8000/addPic', { city: city })
         })
-        .then(function (Data) {
+        .then( res => {
             console.log('update UI');
-            updateUI()
+            updateUI(res)
+
+            //updateUI()
         })
 }
 
@@ -58,15 +59,15 @@ const postData = async (url = '', data = {}) => {
     }
 }
 
-const updateUI = async () => {
+const updateUI = async (data = {}) => {
     const request = await fetch('http://localhost:8000/getData');
     try {
         const allData = await request.json();
-        console.log("data", allData);
+        console.log("all data", allData);
         //add image for city
         Client.updateImage(allData.url);
         //update most recent entry (count days, and weather info)
-        document.getElementById('count').innerHTML = `${allData.city}, ${allData.country} is ${ddateIndex} days away`;
+        document.getElementById('count').innerHTML = `${allData.city}, ${allDatacountry} is ${ddateIndex} days away`;
         document.getElementById('forcast').innerHTML = `Typical weather for then is:`
         document.getElementById("high").innerHTML = `High: ${allData.high}, Low: ${allData.low}`;
         document.getElementById("des").innerHTML = `${allData.des}`;

@@ -4,6 +4,10 @@ const fetch = require('node-fetch');
 const geoNames = 'http://api.geonames.org/postalCodeSearchJSON?';
 const weatherBit = 'http://api.weatherbit.io/v2.0/forecast/daily?';
 const pixabay = 'https://pixabay.com/api/?';
+GNKey = 'safa';
+WBKEY = '6c48bc327e4e490599258220e89f10b9';
+PIXKEY = '20067182-f1628820fcbc8f6f0ee2b7841';
+
 // Setup empty JS object to act as endpoint for all routes
 let projectData = {};
 const port = 8000;
