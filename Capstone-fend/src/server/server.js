@@ -46,11 +46,12 @@ function listening() {
 
 app.get('/getData', (req, res) => {
     console.log("getdata", projectData);
-    res.send(projectData);
+   res.send(projectData);
 });
 
 //geoname api call
 app.post('/addLocation', async (req, res) => {
+    console.log('addLocation start');
     const body = req.body;
     
     const response = await fetch( process.env.GEONAME + 'placename=' + body.city + '&country=' + body.country + '&maxRows=10&username=' + process.env.GN_USER);
@@ -60,6 +61,7 @@ app.post('/addLocation', async (req, res) => {
         projectData = {
             lng : data.postalCodes[0].lng,
             lat : data.postalCodes[0].lat,
+            city: body.city,
             country: data.postalCodes[0].countryCode
         }
         res.send(projectData);
@@ -72,6 +74,7 @@ app.post('/addLocation', async (req, res) => {
 
 //pixabay api call
 app.post('/addPic', async (req, res) => {
+    console.log('addPic start');
     const response = await fetch( process.env.PIXABAY + '&key='+ process.env.P_KEY +'&q='+ req.body.city +'&image_type=photo');
     try {
         const data = await response.json();
@@ -89,6 +92,7 @@ app.post('/addPic', async (req, res) => {
 });
 
 app.post('/addWeather', async (req, res) => {
+    console.log('addWeather start');
     const body = req.body;
     const index = req.body.index; //departure date
     

@@ -2,7 +2,7 @@
 /* Global Variables */
 let ddateIndex = 0; //count/index for departure date 
 
-function performAction(e) {
+function performAction(e){
     const city = document.getElementById('city').value;
     const country = document.getElementById('country').value;
     console.log('Add location');
@@ -11,17 +11,16 @@ function performAction(e) {
             function (Data) {
                 console.log('Add weather');
                 ddateIndex = Client.calcCountDown(); //forcaset date index 
-                postData('http://localhost:8000/addWeather', { lng: Data.lng, lat: Data.lat, index: ddateIndex })
-      //      })
-      //  .then(function (Data) {
+           return postData('http://localhost:8000/addWeather', { lng: Data.lng, lat: Data.lat, index: ddateIndex })
+            })
+       .then( function (Data) {
             console.log('Add pic');
-            postData('http://localhost:8000/addPic', { city: city })
+          return postData('http://localhost:8000/addPic', { city: city })
+          
         })
         .then( res => {
             console.log('update UI');
-            updateUI(res)
-
-            //updateUI()
+            updateUI()
         })
 }
 
@@ -59,7 +58,7 @@ const postData = async (url = '', data = {}) => {
     }
 }
 
-const updateUI = async (data = {}) => {
+const updateUI = async () => {
     const request = await fetch('http://localhost:8000/getData');
     try {
         const allData = await request.json();
@@ -67,7 +66,7 @@ const updateUI = async (data = {}) => {
         //add image for city
         Client.updateImage(allData.url);
         //update most recent entry (count days, and weather info)
-        document.getElementById('count').innerHTML = `${allData.city}, ${allDatacountry} is ${ddateIndex} days away`;
+        document.getElementById('count').innerHTML = `${allData.city}, ${allData.country} is ${ddateIndex} days away`;
         document.getElementById('forcast').innerHTML = `Typical weather for then is:`
         document.getElementById("high").innerHTML = `High: ${allData.high}, Low: ${allData.low}`;
         document.getElementById("des").innerHTML = `${allData.des}`;

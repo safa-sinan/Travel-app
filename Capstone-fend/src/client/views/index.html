@@ -10,29 +10,29 @@
 <body>
   <div class="page">
     <header>Travel Planner</header>
-    <div class="img">
-      <img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg">
-    </div>
+    <div class="img"></div>
     <div class="content">
-        <label for="city">My trip to</label>
-        <input type="text" id="city" placeholder="enter city" required>
-        <label for="country">Country</label>
-        <input type="text" id="country" placeholder="enter country" required>
-        <label for="ddate">Departing</label>
-        <input type="date" id="ddate" placeholder="YYYY-MM-DD" required>
-        <label for="rdate">Returning</label>
-        <input type="date" id="rdate" placeholder="YYYY-MM-DD" required>
-        <button id="Add" type="submit" onsubmit="return Client.performAction(event)" onclick="return Client.performAction(event)">save trip</button>
-        <button id="remove" type="submit">remove trip</button> 
-    <div class="holder entry">
-      <div id="entryHolder">
-        <div id="count"></div>
-        <div id="forcast"></div>
-        <div id="high"></div>
-        <div id="des"></div>
+      <label for="city">My trip to</label>
+      <input type="text" id="city" placeholder="enter city" required>
+      <label for="country">Country</label>
+      <input type="text" id="country" placeholder="enter country" required>
+      <label for="ddate">Departing</label>
+      <input type="date" id="ddate" placeholder="YYYY-MM-DD" required>
+      <label for="rdate">Returning</label>
+      <input type="date" id="rdate" placeholder="YYYY-MM-DD" required>
+      <button id="Add" type="submit" onsubmit="return Client.performAction(event)"
+        onclick="return Client.performAction(event)">save trip</button>
+      <button id="remove" type="submit">remove trip</button>
+      <div class="holder entry">
+        <div id="entryHolder">
+          <div id="count"></div>
+          <div id="forcast"></div>
+          <div id="high"></div>
+          <div id="des"></div>
+        </div>
       </div>
     </div>
   </div>
-</div>
 </body>
+
 </html>
