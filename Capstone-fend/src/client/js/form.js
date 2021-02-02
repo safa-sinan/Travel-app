@@ -24,11 +24,9 @@ const setupDate = () => {
     const today = new Date();
     //set minimum date to today
     date.min = today.toISOString().split('T')[0];
-    console.log(date.min);
     //set maximum date to 16 days from now
     const max = new Date(today.setDate(today.getDate() + 16));
     date.max = max.toISOString().split('T')[0];
-    console.log(date.max);
 
     const rdate = document.getElementById('rdate');
     //set maximum date to the same value of departure field
@@ -36,11 +34,25 @@ const setupDate = () => {
 }
 
 const returnDate = (e) => {
+    const date = document.getElementById('ddate').value;
+    const rdate = document.getElementById('rdate');
 
+    //set the minimum date value to departure date
+    rdate.min = date; 
+}
+
+const tripDuration = () => {
+    const ddate = new Date(document.getElementById('ddate').value);
+    const rdate = new Date(document.getElementById('rdate').value);
+
+    //set the minimum date value to departure date
+    const duration = (rdate.getTime() - ddate.getTime())/(1000 * 3600 * 24);
+    return duration; 
 }
 
 export {
     clearOutput,
     returnDate,
-    setupDate
+    setupDate,
+    tripDuration
 }

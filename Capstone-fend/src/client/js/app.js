@@ -64,11 +64,12 @@ const updateUI = async () => {
     const request = await fetch('http://localhost:8000/getData');
     try {
         const allData = await request.json();
-        console.log("all data", allData);
+        
         //add image for city
         Client.updateImage(allData.url);
+        const duration = Client.tripDuration();
         //update most recent entry (count days, and weather info)
-        document.getElementById('count').innerHTML = `${allData.city}, ${allData.country} is ${ddateIndex} days away`;
+        document.getElementById('count').innerHTML = `${allData.city}, ${allData.country} is ${ddateIndex} days away Duration is ${duration} days`;
         document.getElementById('forcast').innerHTML = `Typical weather for then is:`
         
         const h31 = document.createElement('h5');
