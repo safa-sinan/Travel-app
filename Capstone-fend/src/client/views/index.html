@@ -7,9 +7,9 @@
   <link href="https://fonts.googleapis.com/css?family=Oswald:400,600,700|Ranga:400,700&display=swap" rel="stylesheet">
 </head>
 
-<body>
-  <div class="page">
-    <header>Travel Planner</header>
+<body class="page">
+  <header><h1>Travel Planner</h1></header>
+  <div class="info">
     <div class="img"></div>
     <div class="content">
       <label for="city">My trip to</label>
@@ -19,17 +19,15 @@
       <label for="ddate">Departing</label>
       <input type="date" id="ddate" placeholder="YYYY-MM-DD" required>
       <label for="rdate">Returning</label>
-      <input type="date" id="rdate" placeholder="YYYY-MM-DD" required>
-      <button id="Add" type="submit" onsubmit="return Client.performAction(event)"
+      <input type="date" id="rdate" placeholder="YYYY-MM-DD" onchange="returnDate(event)" required>
+      <button id="add" type="submit" onsubmit="return Client.performAction(event)"
         onclick="return Client.performAction(event)">save trip</button>
-      <button id="remove" type="submit">remove trip</button>
-      <div class="holder entry">
-        <div id="entryHolder">
-          <div id="count"></div>
-          <div id="forcast"></div>
-          <div id="high"></div>
-          <div id="des"></div>
-        </div>
+      <button id="remove" type="submit" onclick="return Client.clearOutput()">remove trip</button>
+      <div class="entry">
+          <div id="count" class="centry"></div>
+          <div id="forcast" class="centry"></div>
+          <div id="high" class="centry"></div>
+          <div id="des" class="centry"></div>
       </div>
     </div>
   </div>

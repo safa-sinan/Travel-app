@@ -54,10 +54,10 @@ app.post('/addLocation', async (req, res) => {
     console.log('addLocation start');
     const body = req.body;
     
-    const response = await fetch( process.env.GEONAME + 'placename=' + body.city + '&country=' + body.country + '&maxRows=10&username=' + process.env.GN_USER);
+    const response = await fetch( process.env.GEONAME + 'placename=' + body.city + '&country=' + body.country + '&maxRows=1&username=' + process.env.GN_USER);
     try { 
         const data = await response.json();
-        //console.log("data", data);
+        console.log("data", data);
         projectData = {
             lng : data.postalCodes[0].lng,
             lat : data.postalCodes[0].lat,

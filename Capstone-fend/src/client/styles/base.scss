@@ -1,0 +1,89 @@
+$maincolor: #ffe6e6;
+$outputfont:"Gill Sans",
+sans-serif;
+
+body {
+    background: #fffff8;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+#app {
+    display: grid;
+    grid-auto-rows: minmax(150px, auto);
+    /* grid-template-columns:  */
+    height: 100vh;
+    background: #f23557;
+    color: #f0d43a;
+    justify-content: center;
+    grid-gap: 1em;
+    font-size: 20px;
+    font-family: 'Oswald', sans-serif;
+}
+
+/*  Basic Styling To Override Default For Basic HTML Elements */
+label {
+    display: block;
+    //font-size: 27px;
+}
+
+input {
+    display: block;
+
+    background: $maincolor;
+    color: black;
+    //font-size: 20px;
+    //font-family: 'Oswald', sans-serif;
+    border: none;
+}
+
+img {
+    width: 100%;
+    padding: 1rem;
+}
+
+h1 {
+    font-size: 36px;
+}
+
+textarea {
+    background: #22b2da;
+    color: #f0d43a;
+    font-size: 20px;
+    font-family: 'Oswald', sans-serif;
+}
+#Add {
+    background-color: white;
+    color: black;
+    border: 2px solid black;
+    font-family: $outputfont;
+}
+#remove {
+    background-color: $maincolor;
+    color: black;
+    border: 2px solid white;
+    font-family: $outputfont;
+}
+
+.entry {
+    grid-column-end: span 2;
+    margin: 1rem;
+}
+.centry{
+    display: block;
+}
+/* Reset style for HTML element on active to have no border*/
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
+
+/* Style for Placeholder Text*/
+::placeholder {
+    /* Firefox, Chrome, Opera */
+    color: grey;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    //font-family: 'Oswald', sans-serif;
+
+}

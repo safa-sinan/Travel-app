@@ -1,7 +1,10 @@
+$maincolor: #ffe6e6;
 @media(max-width: 320px) {
-    .page {
+    .info {
         display: grid;
         grid-template-rows: 10% 40% 50%;
+        min-width: 320px;
+        justify-content: center;
         grid-template-areas:
             "hd"
             "ph"
@@ -10,9 +13,12 @@
 }
 
 @media(min-width: 600px) and (max-width: 900px) {
-    .page {
+    .info {
         display: grid;
         grid-template-rows: 10% auto;
+        grid-auto-columns: minmax(600px, auto);
+        grid-template-columns: 1fr 1fr;
+        justify-content: center;
         grid-template-areas:
             "hd hd"
             "ph main"
@@ -20,9 +26,13 @@
 }
 
 @media(min-width: 901px) {
-    .page {
+    .info {
         display: grid;
         grid-template-rows: 10% auto;
+        min-width: 901px;
+        grid-auto-columns: minmax(901px, auto);
+        grid-template-columns: 1fr 1fr;
+        justify-content: center;
         grid-template-areas:
             "hd hd"
             "ph main";
@@ -37,9 +47,15 @@ header {
     //flex-direction: column;
    // align-items: flex-start;
     grid-area: ph;
+    background-color: $maincolor;
     //padding: 0.2rem;
 }
 .content {
     grid-area: main;
+    display: grid;
     padding: 1rem;
+    background-color:$maincolor;
+    grid-template-rows: 1fr 1fr 1fr 4fr;
+    grid-template-columns: 1fr 1fr;
+    row-gap: .5rem;
 }

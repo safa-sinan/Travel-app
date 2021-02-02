@@ -1,7 +1,22 @@
 //validate the submitted form
-const validateForm = () => {
-    //3)get count down days 
-    //3)clear the div below the input field for the most recent country including the image
+const clearOutput = () => {
+    //delete old image
+    const oldImg = document.querySelector('img');
+    if (oldImg != null) {
+        oldImg.remove();
+    }
+    //clear the div below the input field for the most recent country 
+    document.getElementById('count').innerHTML = '';
+    document.getElementById('forcast').innerHTML = '';
+
+    const high = document.querySelector('#high > h5');
+    const des = document.querySelector('#des > h5');
+    if (high != null) {
+        high.remove();
+    }
+    if (des != null) {
+        des.remove();
+    }
 }
 
 const setupDate = () => {
@@ -20,7 +35,12 @@ const setupDate = () => {
     rdate.max = date.max;
 }
 
+const returnDate = (e) => {
+
+}
+
 export {
-    validateForm,
+    clearOutput,
+    returnDate,
     setupDate
 }
