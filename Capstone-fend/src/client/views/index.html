@@ -17,11 +17,11 @@
       <label for="country">Country</label>
       <input type="text" id="country" placeholder="enter country" required>
       <label for="ddate">Departing</label>
-      <input type="date" id="ddate" placeholder="YYYY-MM-DD" onchange="Client.returnDate(event)" required>
+      <input type="date" id="ddate" placeholder="YYYY-MM-DD" onchange="Client.returnDate()" required>
       <label for="rdate">Returning</label>
       <input type="date" id="rdate" placeholder="YYYY-MM-DD" required>
-      <button id="add" type="submit" onsubmit="return Client.performAction(event)"
-        onclick="return Client.performAction(event)">save trip</button>
+      <button id="add" type="submit" onsubmit="return Client.performAction()"
+        onclick="return Client.performAction()">save trip</button>
       <button id="remove" type="submit" onclick="return Client.clearOutput()">remove trip</button>
       <div class="entry">
           <div id="count" class="centry"></div>

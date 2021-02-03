@@ -2,7 +2,7 @@
 /* Global Variables */
 let ddateIndex = 0; //count/index for departure date 
 
-function performAction(e){
+function performAction(){
     const city = document.getElementById('city').value;
     const country = document.getElementById('country').value;
     Client.clearOutput();
@@ -14,29 +14,15 @@ function performAction(e){
                 ddateIndex = Client.calcCountDown(); //forcaset date index 
            return postData('http://localhost:8000/addWeather', { lng: Data.lng, lat: Data.lat, index: ddateIndex })
             })
-       .then( function (Data) {
+       .then( function () {
             console.log('Add pic');
           return postData('http://localhost:8000/addPic', { city: city })
           
         })
         .then( res => {
             console.log('update UI');
-            updateUI()
-        })
-}
-
-const getWeatherData = async (baseURL, zip, key) => {
-
-    const res = await fetch(baseURL + 'zip=' + zip + '&appid=' + key)
-    try {
-
-        const data = await res.json();
-        console.log(data)
-        return data;
-    } catch (error) {
-        console.log("error", error);
-        // appropriately handle the error
-    }
+            updateUI();
+         })
 }
 
 const postData = async (url = '', data = {}) => {

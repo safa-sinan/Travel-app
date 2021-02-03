@@ -33,7 +33,7 @@ const setupDate = () => {
     rdate.max = date.max;
 }
 
-const returnDate = (e) => {
+const returnDate = () => {
     const date = document.getElementById('ddate').value;
     const rdate = document.getElementById('rdate');
 
