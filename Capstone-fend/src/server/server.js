@@ -52,7 +52,7 @@ app.post('/addLocation', async (req, res) => {
     console.log('addLocation start');
     const body = req.body;
     
-    const response = await fetch( process.env.GEONAME + 'placename=' + body.city + '&country=' + body.country + '&maxRows=1&username=' + process.env.GN_USER);
+    const response = await fetch( geoNames + 'placename=' + body.city + /*'&country=' + body.country + */'&maxRows=1&username=' + GNKey);
     try { 
         const data = await response.json();
         console.log("data", data);
@@ -73,7 +73,7 @@ app.post('/addLocation', async (req, res) => {
 //pixabay api call
 app.post('/addPic', async (req, res) => {
     console.log('addPic start');
-    const response = await fetch( process.env.PIXABAY + '&key='+ process.env.P_KEY +'&q='+ req.body.city +'&image_type=photo');
+    const response = await fetch( pixabay + '&key='+ PIXKEY +'&q='+ req.body.city +'&image_type=photo');
     try {
         const data = await response.json();
     
@@ -94,7 +94,7 @@ app.post('/addWeather', async (req, res) => {
     const body = req.body;
     const index = req.body.index; //departure date
     
-    const response = await fetch( process.env.WEATHER + '&lat='+ body.lat +'&lon='+ body.lng + '&key='+ process.env.WB_KEY );
+    const response = await fetch( weatherBit + '&lat='+ body.lat +'&lon='+ body.lng + '&key='+ WBKEY );
     try {
         const data = await response.json();
         //console.log("data", data);

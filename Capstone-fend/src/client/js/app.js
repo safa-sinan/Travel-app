@@ -4,10 +4,10 @@ let ddateIndex = 0; //count/index for departure date
 
 function performAction(){
     const city = document.getElementById('city').value;
-    const country = document.getElementById('country').value;
+    //const country = document.getElementById('country').value;
     Client.clearOutput();
     console.log('Add location');
-    postData('http://localhost:8000/addLocation', { city: city, country: country })
+    postData('http://localhost:8000/addLocation', { city: city /*, country: country*/ })
         .then(
             function (Data) {
                 console.log('Add weather');
