@@ -1,4 +1,12 @@
-//validate the submitted form
+const tripDuration = () => {
+    const ddate = new Date(document.getElementById('ddate').value);
+    const rdate = new Date(document.getElementById('rdate').value);
+
+    //set the minimum date value to departure date
+    const duration = (rdate.getTime() - ddate.getTime())/(1000 * 3600 * 24);
+    return duration; 
+}
+
 const clearOutput = () => {
     //delete old image
     const oldImg = document.querySelector('img');
@@ -39,15 +47,6 @@ const returnDate = () => {
 
     //set the minimum date value to departure date
     rdate.min = date; 
-}
-
-const tripDuration = () => {
-    const ddate = new Date(document.getElementById('ddate').value);
-    const rdate = new Date(document.getElementById('rdate').value);
-
-    //set the minimum date value to departure date
-    const duration = (rdate.getTime() - ddate.getTime())/(1000 * 3600 * 24);
-    return duration; 
 }
 
 export {

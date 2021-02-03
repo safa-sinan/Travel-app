@@ -1,24 +1,22 @@
 # Front End Nanodegree Program
 
-Front End Nanodegree Content & Project Resources
+Front End Nanodegree Content 
 
 ## Table of Contents
 
-* [Project address & url](#project)
-* [Description](#Descriptionnpm install --save-dev jest)
-* [Style-Guide](#style-guide)
+* [Project title](#project)
+* [Description](#Description)
+* [Extend your project option](#Extend)
 
-## Project
-
-The following is the current projects 
-[Evaluate A News Article with Natural Language Processing](https://github.com/udacity/fend/tree/refresh-2019/projects/evaluate-news-nlp)
+## Project 
+[Travel app Capstone ]
 
 ## Description 
 
-this application allows users to enter url of a website then calls the meaningcloud sentimental analytics api to analyse the text then prints it on the same page
+this application allows users to enter trip location, departure and return date then shows details about the weather plus picture
 
-## Style-Guide
+## Extend
 
-See below for the Udacity Style Guide used thoroughout the Front End Nanodegree.
+the chosen option is Trip duration: Add end date and display length of trip.
 
 * [Nanodegree Style Guide](http://udacity.github.io/frontend-nanodegree-styleguide/)
