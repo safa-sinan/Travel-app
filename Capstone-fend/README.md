@@ -22,7 +22,8 @@ the chosen option is Trip duration: Add end date and display length of trip.
 
 * [Nanodegree Style Guide](http://udacity.github.io/frontend-nanodegree-styleguide/)
 
-## dependency
+## Dependency
+### All environments
 - NPM
 - webpack
 - webpack-cli
@@ -43,10 +44,10 @@ the chosen option is Trip duration: Add end date and display length of trip.
 - jest
 - eslint
 
-## development
+### development
 - source-map
 
-## production
+### production
 - MiniCssExtractPlugin
 
 
