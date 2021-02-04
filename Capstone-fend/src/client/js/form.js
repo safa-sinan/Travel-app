@@ -26,6 +26,7 @@ const clearOutput = () => {
         des.remove();
     }
 }
+document.getElementById('remove').addEventListener('click', clearOutput);
 
 const setupDate = () => {
     const date = document.getElementById('ddate');

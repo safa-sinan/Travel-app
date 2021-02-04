@@ -3,6 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Travel App</title>
   <link href="https://fonts.googleapis.com/css?family=Oswald:400,600,700|Ranga:400,700&display=swap" rel="stylesheet">
 </head>
@@ -22,7 +23,7 @@
       <input type="date" id="rdate" placeholder="YYYY-MM-DD" required>
       <button id="add" type="submit" onsubmit="return Client.performAction()"
         onclick="return Client.performAction()">save trip</button>
-      <button id="remove" type="submit" onclick="return Client.clearOutput()">remove trip</button>
+      <button id="remove" type="submit">remove trip</button>
       <div class="entry">
           <div id="count" class="centry"></div>
           <div id="forcast" class="centry"></div>
