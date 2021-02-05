@@ -73,7 +73,8 @@ app.post('/addLocation', async (req, res) => {
 //pixabay api call
 app.post('/addPic', async (req, res) => {
     console.log('addPic start');
-    const response = await fetch( pixabay + '&key='+ PIXKEY +'&q='+ req.body.city +'&image_type=photo');
+    const response = await fetch( pixabay + '&key='+ PIXKEY +'&q='+ req.body.city +'&&category=places&image_type=photo');
+
     try {
         const data = await response.json();
     
