@@ -43,19 +43,16 @@ function listening() {
 };
 
 app.get('/getData', (req, res) => {
-    console.log("getdata", projectData);
    res.send(projectData);
 });
 
 //geoname api call
 app.post('/addLocation', async (req, res) => {
-    console.log('addLocation start');
     const body = req.body;
     
-    const response = await fetch( geoNames + 'placename=' + body.city + /*'&country=' + body.country + */'&maxRows=1&username=' + GNKey);
+    const response = await fetch( process.env.GEONAME + 'placename=' + body.city + /*'&country=' + body.country + */'&maxRows=1&username=' + process.env.GN_USER);
     try { 
         const data = await response.json();
-        console.log("data", data);
         projectData = {
             lng : data.postalCodes[0].lng,
             lat : data.postalCodes[0].lat,
@@ -67,13 +64,11 @@ app.post('/addLocation', async (req, res) => {
         console.log("error", error);
         // appropriately handle the error
     }
-    console.log('addLocation end');
 });
 
 //pixabay api call
 app.post('/addPic', async (req, res) => {
-    console.log('addPic start');
-    const response = await fetch( pixabay + '&key='+ PIXKEY +'&q='+ req.body.city +'&&category=places&image_type=photo');
+    const response = await fetch( process.env.PIXABAY + '&key='+ process.env.P_KEY +'&q='+ req.body.city +'&&category=places&image_type=photo');
 
     try {
         const data = await response.json();
@@ -86,29 +81,23 @@ app.post('/addPic', async (req, res) => {
         console.log("error", error);
         // appropriately handle the error
     }
-    console.log("projectData", projectData);
-    console.log('addPic end');
 });
 
 app.post('/addWeather', async (req, res) => {
-    console.log('addWeather start');
     const body = req.body;
     const index = req.body.index; //departure date
     
-    const response = await fetch( weatherBit + '&lat='+ body.lat +'&lon='+ body.lng + '&key='+ WBKEY );
+    const response = await fetch( process.env.WEATHER + '&lat='+ body.lat +'&lon='+ body.lng + '&key='+ process.env.WB_KEY );
     try {
         const data = await response.json();
-        //console.log("data", data);
         projectData = { ...projectData,
             low : data.data[index].low_temp,
             high : data.data[index].high_temp,
             des: data.data[index].weather.description
         }
-        //console.log("projectData", projectData);
         res.send(projectData);
     } catch (error) {
         console.log("error", error);
         // appropriately handle the error
     }
-    console.log('addWeather end');
 });

@@ -6,21 +6,17 @@ function performAction(){
     const city = document.getElementById('city').value;
     //const country = document.getElementById('country').value;
     Client.clearOutput();
-    console.log('Add location');
     postData('http://localhost:8000/addLocation', { city: city /*, country: country*/ })
         .then(
             function (Data) {
-                console.log('Add weather');
                 ddateIndex = Client.calcCountDown(); //forcaset date index 
            return postData('http://localhost:8000/addWeather', { lng: Data.lng, lat: Data.lat, index: ddateIndex })
             })
        .then( function () {
-            console.log('Add pic');
           return postData('http://localhost:8000/addPic', { city: city })
           
         })
         .then( res => {
-            console.log('update UI');
             updateUI();
          })
 }
@@ -66,10 +62,10 @@ const updateUI = async () => {
         h32.innerHTML = `${allData.des}`;
         document.getElementById('des').appendChild(h32);
        
-        //country code
 
     } catch (error) {
         console.log("error", error);
+        alert("Could not update output. Call me to fix")
     }
 }
 export{
